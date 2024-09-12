@@ -37,6 +37,9 @@ export default function Track({ track, tracksData, isFavorite }: TrackType) {
   };
 
   const handleLikeClick = () => {
+    if (!token.access) {
+      return alert("Авторизуйтесь, чтобы ставить лайк!");
+    }
     isLiked ? setDislike(token.access, id) : setLike(token.access, id);
     setIsLiked(!isLiked);
   };
@@ -45,8 +48,8 @@ export default function Track({ track, tracksData, isFavorite }: TrackType) {
     const isLikedByUser =
     isFavorite || track.stared_user.find((u) => u.id === user?.id);
     console.log(isLikedByUser);
-    setIsLiked(!!isLikedByUser);
-  },[track]);
+    setIsLiked(!isLikedByUser);
+  },[isFavorite, track, user?.id]);
 
   return (
     <div className={styles.playlistItem}>
@@ -80,7 +83,7 @@ export default function Track({ track, tracksData, isFavorite }: TrackType) {
           <svg className={styles.trackTimeSvg}>
             <use
               xlinkHref={`/img/icon/sprite.svg#${
-                isLiked ? "icon-like-active" : "icon-like"
+                isLiked ? "icon-like" : "icon-dislike"
               }`}
             />
           </svg>

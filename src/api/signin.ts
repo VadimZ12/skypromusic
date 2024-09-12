@@ -17,7 +17,7 @@ export async function signin({
     },
   });
   if (!res.ok) {
-      throw new Error("Ошибка");
+      return alert("ВВедены неверные данные");
     }
     const data = await res.json();
     return data;
