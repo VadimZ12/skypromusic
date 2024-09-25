@@ -1,3 +1,5 @@
+import { error } from "console";
+
 export async function signin({
   email,
   password,
@@ -17,7 +19,7 @@ export async function signin({
     },
   });
   if (!res.ok) {
-      return alert("ВВедены неверные данные");
+      throw new Error("Введены неверные данные");
     }
     const data = await res.json();
     return data;
