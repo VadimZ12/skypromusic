@@ -1,8 +1,8 @@
 import { trackType, userType } from "@/types";
 import { json } from "stream/consumers";
 
-const apiUrl = "https://skypro-music-api.skyeng.tech/catalog/track/all/";
-const apiUrPlaylist = "https://skypro-music-api.skyeng.tech/catalog/selection/";
+const apiUrl = "https://webdev-music-003b5b991590.herokuapp.com/catalog/track/all/";
+const apiUrPlaylist = "https://webdev-music-003b5b991590.herokuapp.com/catalog/selection/";
 
 export async function getTracks() {
   const res = await fetch(apiUrl);
@@ -26,7 +26,7 @@ export async function getPlaylistTracks(id: string) {
 
 export async function getFavoritesTracks(token:string) {
   const res = await fetch(
-    "https://skypro-music-api.skyeng.tech/catalog/track/favorite/all/",
+    "https://webdev-music-003b5b991590.herokuapp.com/catalog/track/favorite/all/",
     {
       method: "GET",
       headers: {
@@ -49,7 +49,7 @@ export async function getToken({
   email: string;
   password: string;
 }) {
-  const res = await fetch("https://skypro-music-api.skyeng.tech/user/token/", {
+  const res = await fetch("https://webdev-music-003b5b991590.herokuapp.com/user/token/", {
     method: "POST",
     body: JSON.stringify({
       email,
@@ -74,7 +74,7 @@ export async function getToken({
 //   }
 
 export async function setLike(token: string, id:number) {
-  const res = await fetch(`https://skypro-music-api.skyeng.tech/catalog/track/${id}/favorite/`, {
+  const res = await fetch(`https://webdev-music-003b5b991590.herokuapp.com/catalog/track/${id}/favorite/`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -88,7 +88,7 @@ export async function setLike(token: string, id:number) {
 }
 
 export async function setDislike(token: string, id:number) {
-  const res = await fetch(`https://skypro-music-api.skyeng.tech/catalog/track/${id}/favorite/`, {
+  const res = await fetch(`https://webdev-music-003b5b991590.herokuapp.com/catalog/track/${id}/favorite/`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
