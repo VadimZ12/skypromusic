@@ -11,7 +11,8 @@ export async function getTracks() {
     throw new Error("Ошибка при получении данных");
   }
 
-  return res.json();
+  const tracksResponse = await res.json()
+  return tracksResponse.data; 
 }
 
 export async function getPlaylistTracks(id: string) {
