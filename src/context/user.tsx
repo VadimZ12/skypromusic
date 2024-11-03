@@ -3,7 +3,7 @@
 import { getValueFromLocalStorage } from "@/lib/getValueFromLS";
 import { tokenType, userType } from "@/types";
 import { useRouter } from "next/navigation";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 type contextType = {
     user: null| userType,
@@ -21,16 +21,22 @@ const initialContextValue:contextType = {
 
 
 export const UserConext = createContext(initialContextValue);
-export const UserProvider = ({ children }: any) => {
+export const UserProvider = ({ children }: { children: React.ReactNode}) => {
   const router = useRouter();
-  const [user, setUser] = useState<any>(getValueFromLocalStorage("user"));
+  const [user, setUser] = useState<userType | null>(null);
+  
+  useEffect(() => {
+    const user = getValueFromLocalStorage("user");
+    if (user) setUser(user);
+  }, []);
+
   function login(newUser: userType, token:tokenType) {
     setUser(newUser);
     localStorage.setItem("user", JSON.stringify(newUser));
     localStorage.setItem("token", JSON.stringify(token));
     router.push("/tracks");
   }
-
+  
   function logout() {
     setUser(null);
     localStorage.removeItem("user");
@@ -42,4 +48,4 @@ export const UserProvider = ({ children }: any) => {
       {children}
     </UserConext.Provider>
   );
-};
+}
