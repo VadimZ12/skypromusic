@@ -31,17 +31,10 @@ export default function Playlist({tracks, playlist, isLoading, isFavorite}:{trac
       <div className={styles.contentPlaylist}>
         {isLoading ? 'Загрузка...' : tracks?.length === 0 ? 'Нет треков' : ''} 
         {tracks?.map((track) => (
-          <Track key={track.id} track={track} tracksData={playlist} isFavorite={isFavorite} />
+          <Track key={track._id} track={track} tracksData={playlist} isFavorite={isFavorite} />
         ))}
       </div>
     </div>
     </>
   );
 }
-
-//   // Обратите внимание, что функция компонента также является асинхронной
-//   export default async function HomePage() {
-//     const data = await getData();
-
-//     return <main>/* Некий контент */</main>;
-//   }

@@ -81,14 +81,6 @@ export default function Player() {
     );
   }, []);
 
-  // useEffect(() => {
-  //   if (duration) {
-  //     if (currentTime >= duration) {
-  //       dispatch(setNextTrack());
-  //     }
-  //   }
-  // }, [dispatch, currentTime]);
-
   const handleSeek = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     if (audioRef.current) {
       setCurrentTime(Number(event.target.value));

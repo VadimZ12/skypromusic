@@ -67,12 +67,6 @@ export async function getToken({
   const data = await res.json();
   return data;
 }
-//   // Обратите внимание, что функция компонента также является асинхронной
-//   export default async function HomePage() {
-//     const data = await getData();
-
-//     return <main>/* Некий контент */</main>;
-//   }
 
 export async function setLike(token: string, id:number) {
   const res = await fetch(`https://webdev-music-003b5b991590.herokuapp.com/catalog/track/${id}/favorite/`, {

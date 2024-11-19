@@ -25,7 +25,6 @@ export default function Track({ track, tracksData, isFavorite }: TrackType) {
   const { name, author, album, duration_in_seconds, _id } = track;
   const isTrackSelected = currentTrack ? currentTrack._id === track._id : false; // для инициализации играющего трека в плейлисте
   const { isPlaying } = useAppSelector((store) => store.playlist);
-  console.log(track);
   const { user } = useUser();
   const token = getValueFromLocalStorage("token");
   const isLikedByUser =
@@ -48,7 +47,6 @@ export default function Track({ track, tracksData, isFavorite }: TrackType) {
   useEffect(() => {
     const isLikedByUser =
     isFavorite || track.staredUser.find((userId) => userId === user?.id);
-    console.log(isLikedByUser);
     setIsLiked(!isLikedByUser);
   },[isFavorite, track, user?.id]);
 
