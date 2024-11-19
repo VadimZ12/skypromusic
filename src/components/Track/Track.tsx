@@ -22,13 +22,14 @@ type TrackType = {
 
 export default function Track({ track, tracksData, isFavorite }: TrackType) {
   const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
-  const { name, author, album, duration_in_seconds, id } = track;
-  // const isPlaying = currentTrack ? currentTrack.id === track.id : false; // для инициализации играющего трека в плейлисте
+  const { name, author, album, duration_in_seconds, _id } = track;
+  const isTrackSelected = currentTrack ? currentTrack._id === track._id : false; // для инициализации играющего трека в плейлисте
   const { isPlaying } = useAppSelector((store) => store.playlist);
+  console.log(track);
   const { user } = useUser();
   const token = getValueFromLocalStorage("token");
   const isLikedByUser =
-    isFavorite || track.stared_user.find((u) => u.id === user?.id);
+    isFavorite || track.staredUser.find((userId) => userId === user?.id);
   const dispatch = useAppDispatch();
   const [isLiked, setIsLiked] = useState(!!isLikedByUser);
   const handleTrackClick = () => {
@@ -40,13 +41,13 @@ export default function Track({ track, tracksData, isFavorite }: TrackType) {
     if (!token.access) {
       return alert("Авторизуйтесь, чтобы ставить лайк!");
     }
-    isLiked ? setDislike(token.access, id) : setLike(token.access, id);
+    isLiked ? setDislike(token.access, _id) : setLike(token.access, _id);
     setIsLiked(!isLiked);
   };
 
   useEffect(() => {
     const isLikedByUser =
-    isFavorite || track.stared_user.find((u) => u.id === user?.id);
+    isFavorite || track.staredUser.find((userId) => userId === user?.id);
     console.log(isLikedByUser);
     setIsLiked(!isLikedByUser);
   },[isFavorite, track, user?.id]);
@@ -56,10 +57,10 @@ export default function Track({ track, tracksData, isFavorite }: TrackType) {
       <div className={classNames(styles.playlistTrack)}>
         <div onClick={handleTrackClick} className={styles.trackTitle}>
           <div className={styles.trackTitleImage}>
-            {currentTrack?.id === track.id && (
+            {currentTrack?._id === track._id && (
               <div
                 className={`${
-                  isPlaying ? styles.playingDot : styles.stoppedDot
+                  isTrackSelected && isPlaying ? styles.playingDot : styles.stoppedDot
                 }`}
               ></div>
             )}

@@ -36,7 +36,7 @@ export default function Player() {
     setIsLiked(() => {
       const isLikedByUser =
         currentTrack?.isFavorite ||
-        currentTrack?.stared_user.find((u) => u.id === user?.id);
+        currentTrack?.staredUser.find((userId) => userId === user?.id);
       setIsLiked(isLikedByUser);
     });
   }, [currentTrack, user?.id]);
@@ -81,13 +81,13 @@ export default function Player() {
     );
   }, []);
 
-  useEffect(() => {
-    if (duration) {
-      if (currentTime >= duration) {
-        dispatch(setNextTrack());
-      }
-    }
-  }, [currentTime]);
+  // useEffect(() => {
+  //   if (duration) {
+  //     if (currentTime >= duration) {
+  //       dispatch(setNextTrack());
+  //     }
+  //   }
+  // }, [dispatch, currentTime]);
 
   const handleSeek = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     if (audioRef.current) {
@@ -109,12 +109,12 @@ export default function Player() {
   const handleLikeClick = () => {
     if (currentTrack) {
       isLiked
-        ? setDislike(token.access, currentTrack?.id).then(() => {
+        ? setDislike(token.access, currentTrack?._id).then(() => {
             getTracks(). then((data) => {
               dispatch(setInitialTracks({ initialTracks: data }));
             });
           })
-        : setLike(token.access, currentTrack?.id).then(() => {
+        : setLike(token.access, currentTrack?._id).then(() => {
           getTracks(). then((data) => {
             dispatch(setInitialTracks({ initialTracks: data }));
           });
@@ -132,6 +132,7 @@ export default function Player() {
               ref={audioRef}
               src={currentTrack.track_file}
               onTimeUpdate={(e) => setCurrentTime(e.currentTarget.currentTime)}
+              onEnded={() => dispatch(setNextTrack())}
             ></audio>
             <div className={styles.timeLine}>
               {FormatSeconds(currentTime)} / {FormatSeconds(duration)}
