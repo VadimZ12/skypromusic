@@ -1,0 +1,43 @@
+.block {
+  display: flex;
+  background-color: black;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  margin-top: 350px;
+}
+
+.blink {
+  padding-top: 30px;
+  animation: blink 1s infinite;
+  color: yellow;
+}
+
+@keyframes blink {
+  from {
+      opacity: 1;
+  }
+
+  to {
+      opacity: 0;
+  }
+}
+
+.button {
+  margin-top: 30px;
+  height: 30px;
+  width: 200px;
+  border-radius: 10px;
+  background-color: rgb(197, 197, 127);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.button:hover {
+  
+  background-color: rgb(175, 175, 10);
+  
+}

@@ -16,21 +16,26 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Skypro Music
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Музыкальное приложение, позволяющее слушать музыку.
 
-## Learn More
+## Регистрация и авторизация
 
-To learn more about Next.js, take a look at the following resources:
+Зарегистрированный пользователь может зайти в свой аккаунт, нажав на кнопку "Войти" в меню. Для регистрации необходимо нажать на кнопку "Зарегистрироваться".
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Главная страница
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+На главной странице представлены все доступные для прослушивания треки.
 
-## Deploy on Vercel
+## Музыкальный плеер
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+При нажатии на любой трек начинается проигрывание. В нижней части экрана появляется музыкальный плеер, с помощью которого можно переключить трек на следующий или предыдущий, поставить на паузу, поставить трек на повтор или перемешать плейлист.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Избранные треки
+
+Авторизованный пользователь может добавить трек в избранное, нажав на сердечко в плейлисте или музыкальном плеере. Прослушать избранные треки можно в "Моем плейлисте" в меню приложения.
+
+## Подборки
+
+В приложении представлены различные музыкальные подборки, прослушать которые можно, перейдя по ссылкам в правой части экрана.
